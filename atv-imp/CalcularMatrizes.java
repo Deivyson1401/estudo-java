@@ -41,25 +41,41 @@ public class CalcularMatrizes {
         int[][] matrizM12 = {{2,0},{1,3}};
         multiplicarMatrizes(matrizM11, matrizM12);
 
+        System.out.println("\nQuestão 8\n");
+        int[][] matrizM21 = {{2,3,1},{4,0,5}};
+        int[][] matrizM22 = {{1,2},{3,4},{5,6}};
+        multiplicarMatrizes(matrizM21, matrizM22);
+
         // ============================ Escalar =========================================
 
-        System.out.println("Questão 10\n");
-        int[][] matriz = {{2,1},{0,3}};
-        escalarMatrizes(matriz,matriz.length,4);
+        System.out.println("\nQuestão 9\n");
+        int[][] matrizE1 = {{1,2,3},{4,5,6},{7,8,9}};
+        escalarMatrizes(matrizE1,3);
+
+        System.out.println("\nQuestão 10\n");
+        int[][] matrizE2 = {{2,1},{0,3}};
+        escalarMatrizes(matrizE2,4);
     }
 
+    // Declração de função de soma com matrizes
+    
     public static int[][] somarMatrizes(int[][] matriz1, int[][] matriz2){
+
         int[][] matrizResult = new int[matriz1.length][matriz1[0].length];
         
         for (int i = 0; i < matriz1.length; i++){
             
             for(int j = 0; j < matriz1[0].length; j++){
+
                 matrizResult[i][j] = matriz1[i][j] + matriz2[i][j];
+
             }
         }
         imprimirValores(matrizResult);
         return matrizResult;
     }
+    
+    // Declração de função de subtração com matrizes
     
     public static int[][] subtrairMatrizes(int[][] matriz1, int[][] matriz2){
         
@@ -68,6 +84,7 @@ public class CalcularMatrizes {
         for (int i = 0; i < matriz1.length; i++){
             
             for(int j = 0; j < matriz1[i].length; j++){
+
                 matrizResult[i][j] = matriz1[i][j] - matriz2[i][j];
             }
         }
@@ -76,14 +93,22 @@ public class CalcularMatrizes {
         return matrizResult;
     }
 
+    // Declração de função de multiplicação com matrizes
+    
     public static int[][] multiplicarMatrizes(int[][] matriz1, int[][] matriz2){
         
         int[][] matrizResult = new int [matriz1.length][matriz2[0].length];
+
         for (int i = 0; i < matrizResult.length; i++){
-            int soma = 0;
+
             for(int j = 0; j < matrizResult[i].length; j++){
+
+                int soma = 0;
+
                 for (int x = 0; x < matriz1[0].length; x++){
-                    
+
+                    soma = soma + (matriz1[i][x] * matriz2[x][j]);
+
                 }
                 matrizResult[i][j] = soma;
             }
@@ -93,14 +118,18 @@ public class CalcularMatrizes {
         return matrizResult;
     }
     
-    public static int[][] escalarMatrizes(int[][] matriz1, int TamanhoMatriz,int escalar){
+    // Declração de função de multiplicação de matriz por um escalar
+
+    public static int[][] escalarMatrizes(int[][] matriz1, int escalar){
         
-        int[][] matrizResult = new int [TamanhoMatriz][TamanhoMatriz];
+        int[][] matrizResult = new int [matriz1.length][matriz1[0].length];
         
         for (int i = 0; i < matriz1.length; i++){
             
             for(int j = 0; j < matriz1[i].length; j++){
+
                 matrizResult[i][j] = matriz1[i][j] * escalar;
+
             }
         }
         
@@ -109,11 +138,15 @@ public class CalcularMatrizes {
     }
 
     public static void imprimirValores(int[][] matriz){
+
         for(int i = 0; i < matriz.length; i++){
+
             String texto = "";
 
             for (int j = 0; j < matriz[0].length; j++){
+
                 texto = texto + matriz[i][j] + "  ";
+
             }
             System.out.println(texto);
         }
