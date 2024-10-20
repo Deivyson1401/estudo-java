@@ -14,12 +14,12 @@ public class NumeroMatrizes {
         ler.close();
     }
 
-    private String linha = "021602";
-    private String colunaE = "021206";
-    private String colunaD = "061202";
-    private String colunaED = "0212021202";
+    private static String linha = "021602";
+    private static String colunaE = "021206";
+    private static String colunaD = "061202";
+    private static String colunaED = "0212021202";
     
-    private String[][] numeros = {
+    private static String[][] numeros = {
         {"1",colunaD,colunaD,colunaD,colunaD,colunaD,colunaD,colunaD,colunaD,colunaD,colunaD},
         {"2",linha,linha, colunaD,colunaD,linha,linha, colunaE,colunaE,linha, linha},
         {"3",linha,linha,colunaD,colunaD, linha, linha, colunaD, colunaD, linha, linha},
@@ -34,12 +34,17 @@ public class NumeroMatrizes {
 
     public static void imprimirNumero(boolean[][] matriz){
 
-        for(int i =0;i<textNum.length();i++){
-            System.out.println(textNum.charAt(i));;
+        for (int i=0;i<matriz.length;i++){
+            String textLinha = ""
+            for(int j=0;j<matriz[0].length;j++){
+                textLinha = textLinha + matriz[i][j] + " "
+            }
+            System.err.println(textLinha);
         }
     }
 
     public static boolean[][] gerarMatriz(int numero){
+
         String textNum = Integer.toString(numero);
         boolean[][] matriz = new boolean[10][10];
 
