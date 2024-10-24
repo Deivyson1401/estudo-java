@@ -35,9 +35,9 @@ public class NumeroMatrizes {
     public static void imprimirNumero(boolean[][] matriz){
 
         for (int i=0;i<matriz.length;i++){
-            String textLinha = ""
+            String textLinha = "";
             for(int j=0;j<matriz[0].length;j++){
-                textLinha = textLinha + matriz[i][j] + " "
+                textLinha = textLinha + matriz[i][j] + " ";
             }
             System.err.println(textLinha);
         }
@@ -47,14 +47,38 @@ public class NumeroMatrizes {
 
         String textNum = Integer.toString(numero);
         boolean[][] matriz = new boolean[10][10];
+        String[] vetorNum = new String[11];
 
-        for (int i = 0; i<matriz.length;i++){
-
-            for(int j=0;j<matriz[0].length;j++){
-
+        for (int i=0;i<numeros.length;i++){
+            if(textNum==numeros[i][0]){
+                vetorNum = numeros[i];
+                break;
             }
         }
 
+        for (int i = 0; i<matriz.length;i++){
+
+            for(int j=1;j<matriz[0].length;j++){
+
+
+                for(int x = 0; x<vetorNum[j].length();x+=2){
+                    int repeat = vetorNum[j].charAt(x+1);
+                    String indexBin = String.valueOf(vetorNum[j].charAt(x));
+
+                    if(indexBin == "0"){
+
+                        for(int y =0;y<repeat; y++){
+
+                        }
+                        continue;
+                    }
+
+                    for(int y =0;y<repeat; y++){
+
+                    }
+                }
+            }
+        }
         return matriz;
     }
 }
