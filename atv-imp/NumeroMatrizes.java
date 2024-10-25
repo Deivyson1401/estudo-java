@@ -10,7 +10,8 @@ public class NumeroMatrizes {
             System.exit(0);
         }
 
-        imprimirNumero(gerarMatriz(numero));
+        pegarValor(numero);
+
         ler.close();
     }
 
@@ -23,7 +24,7 @@ public class NumeroMatrizes {
         {"1",colunaD,colunaD,colunaD,colunaD,colunaD,colunaD,colunaD,colunaD,colunaD,colunaD},
         {"2",linha,linha, colunaD,colunaD,linha,linha, colunaE,colunaE,linha, linha},
         {"3",linha,linha,colunaD,colunaD, linha, linha, colunaD, colunaD, linha, linha},
-        {"4",colunaED, colunaED, colunaED, colunaED, linha, linha, colunaED, colunaD, colunaD, colunaD},
+        {"4",colunaED, colunaED, colunaED, colunaED, linha, linha, colunaD, colunaD, colunaD, colunaD},
         {"5",linha, linha, colunaE, colunaE, linha, linha, colunaD, colunaD, linha, linha},
         {"6",colunaE, colunaE, colunaE, colunaE, linha, linha, colunaED, colunaED, linha, linha},
         {"7",linha, linha, colunaD, colunaD, colunaD, colunaD, colunaD, colunaD, colunaD, colunaD},
@@ -32,14 +33,28 @@ public class NumeroMatrizes {
         {"0",linha, linha, colunaED, colunaED, colunaED, colunaED, colunaED, colunaED, linha, linha},
     };
 
+    public static void pegarValor(int numero){
+        String textNum = Integer.toString(numero);
+
+        for(int i=0;i<textNum.length();i++){
+            int num = Character.getNumericValue(textNum.charAt(i));
+            imprimirNumero(gerarMatriz(num));
+            System.out.println("\n");
+        }
+    }
+
     public static void imprimirNumero(boolean[][] matriz){
 
         for (int i=0;i<matriz.length;i++){
             String textLinha = "";
             for(int j=0;j<matriz[0].length;j++){
-                textLinha = textLinha + matriz[i][j] + " ";
+                if (matriz[i][j]){
+                    textLinha = textLinha + "O  ";
+                    continue;
+                }
+                textLinha = textLinha + "   ";
             }
-            System.err.println(textLinha);
+            System.out.println(textLinha);
         }
     }
 
@@ -50,7 +65,7 @@ public class NumeroMatrizes {
         String[] vetorNum = new String[11];
 
         for (int i=0;i<numeros.length;i++){
-            if(textNum==numeros[i][0]){
+            if(textNum.equals(numeros[i][0])){
                 vetorNum = numeros[i];
                 break;
             }
@@ -58,24 +73,22 @@ public class NumeroMatrizes {
 
         for (int i = 0; i<matriz.length;i++){
 
-            for(int j=1;j<matriz[0].length;j++){
-
-
-                for(int x = 0; x<vetorNum[j].length();x+=2){
-                    int repeat = vetorNum[j].charAt(x+1);
-                    String indexBin = String.valueOf(vetorNum[j].charAt(x));
-
-                    if(indexBin == "0"){
-
-                        for(int y =0;y<repeat; y++){
-
-                        }
-                        continue;
-                    }
+            int indexMatrizLinha = 0;
+            for(int x = 0; x<vetorNum[i+1].length();x+=2){
+                int repeat = vetorNum[i+1].charAt(x+1) - '0';
+                String indexBin = String.valueOf(vetorNum[i+1].charAt(x));
+                if(indexBin.equals("0")){
 
                     for(int y =0;y<repeat; y++){
-
+                        matriz[i][indexMatrizLinha] = false;
+                        indexMatrizLinha++;
                     }
+                    continue;
+                }
+
+                for(int z =0;z<repeat; z++){
+                    matriz[i][indexMatrizLinha] = true;
+                    indexMatrizLinha++;
                 }
             }
         }
